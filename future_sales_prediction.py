@@ -15,7 +15,7 @@ figure = px.scatter(data_frame = data, x="Sales",
 figure.show()
 
 figure = px.scatter(data_frame = data, x="Sales",
-                    y="Newspaper", size="Newspaper", trendline="ols")
+                    y="tralalala", size="Newspaper", trendline="ols")
 figure.show()
 
 figure = px.scatter(data_frame = data, x="Sales",
