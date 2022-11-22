@@ -1,9 +1,7 @@
 """Quick and dirty script to replace PDB codes in pdb files HEADER with filenames. 
 
 This scprits works only when placed inside a directory containing any number of pdb files.
-It automatically replaces PDB codes in HEADER (line 1, columns 63-66) with the filname for all pdb files in the directory.
-This may result in the first line of the file being different length than the standard 80 columns. 
-MOE and Pymol are fine with that, no other programs were tested.
+It automatically replaces PDB codes in HEADER (line 1, columns starting at 63) with the filname for all pdb files in the directory.
 
 Usage:
 
@@ -20,9 +18,8 @@ def replace_PDB_header(filename: str):
     with open(filename, "r") as file_in:
         pdb_lines = file_in.readlines()
 
-    strucutre_name = filename[: filename.rfind(".")]
-    pdb_code_in = pdb_lines[0][62:66]
-    pdb_lines[0] = pdb_lines[0].replace(pdb_code_in, strucutre_name)
+    strucutre_name_padded = filename[: filename.rfind(".")].ljust(18,' ')+'\n'
+    pdb_lines[0] = pdb_lines[0].replace(pdb_lines[0][62:], strucutre_name_padded)
 
     with open(filename, "w") as file_out:
         file_out.writelines(pdb_lines)
