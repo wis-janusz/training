@@ -1,6 +1,5 @@
 from random import random
-
-
+from typing import List
 from random import randint
 
 def number_guessing(max_n):
@@ -24,7 +23,10 @@ def number_guessing(max_n):
             print(f'Niestety, to nie twoja liczba. Twoja liczba jest w zakresie [{min_n},{max_n}].')
 
 
-def calc_mean(list_in):
+def calc_mean(list_in: List[int]) -> float:
+    if not all([int == type(x)for x in list_in]):
+        raise TypeError
+    
     temp_mean = 0
     
     for i in list_in:
