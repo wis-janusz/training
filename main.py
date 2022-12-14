@@ -1,4 +1,4 @@
-from code import beginner_problems, future_sales_prediction
+from src import beginner_problems, future_sales_prediction
 
 def main():
     app_dict = {1:beginner_problems.number_guessing, 2:beginner_problems.calc_mean, 3:beginner_problems.calc_median, 4:beginner_problems.calc_mode}

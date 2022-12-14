@@ -1,6 +1,8 @@
-from random import random
 from typing import List
 from random import randint
+import getpass
+
+#Problem 1: number guessing
 
 def number_guessing(max_n):
     min_n = 0
@@ -22,6 +24,7 @@ def number_guessing(max_n):
             i_guess += 1
             print(f'Niestety, to nie twoja liczba. Twoja liczba jest w zakresie [{min_n},{max_n}].')
 
+#Problem 2: mean, median and mode calculation
 
 def calc_mean(list_in: List[int]) -> float:
     if not all([int == type(x)for x in list_in]):
@@ -47,7 +50,6 @@ def calc_median(list_in):
     
     return median_out
 
-
 def calc_mode(list_in):
     mode_out = []
     count_n = {}
@@ -62,3 +64,21 @@ def calc_mode(list_in):
     
     return mode_out
 
+#Problem 3: password identification
+
+def password_id(user_db:dict):
+
+    username_input = input('Podaj nazwę użytkownika: ')
+    password_input = getpass.getpass('Podaj hasło: ')
+    is_verified = 'Nieprawidłowa nazwa użytkownika lub hasło.'
+    
+    for user in user_db.keys():
+        if user == username_input:
+            for tries in range(3):
+                if user_db[user] != password_input:
+                    password_input = getpass.getpass('Podaj hasło ponownie: ')
+                else:
+                    is_verified = 'Zalogowano.'
+                    break
+
+    return is_verified
