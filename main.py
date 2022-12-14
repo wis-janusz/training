@@ -1,5 +1,7 @@
 from src import beginner_problems, future_sales_prediction
 
+#Just an example of app dictionary. Not actually working - passing inputs not implemented. TBD.
+
 def main():
     app_dict = {1:beginner_problems.number_guessing, 2:beginner_problems.calc_mean, 3:beginner_problems.calc_median, 4:beginner_problems.calc_mode}
     while True:
