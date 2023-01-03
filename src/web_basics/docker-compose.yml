@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  web:
+    image: angon/plantapp_img:first
+    ports:
+      - "8888:8888"
+    restart: always
+
+  db:
+    ports:
+      - "5432:5432"
+    image: postgres
+    container_name: plantapp_db
+    environment:
+      POSTGRES_PASSWORD: plant_password
+      POSTGRES_USER: plant_admin
+      POSTGRES_DB: plantapp_db
+    volumes:
+      - plantapp_data:/var/lib/postgresql/data
+    restart: always
+volumes:
+  plantapp_data:
+   name: plantapp_data
