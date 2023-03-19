@@ -1,10 +1,12 @@
 from typing import List
 from random import randint
+from datetime import date
+from collections import defaultdict
 import getpass
 
 #Problem 1: number guessing
 
-def number_guessing(max_n):
+def guess_number(max_n):
     min_n = 0
     i_guess = 0
     x = randint(min_n,max_n)
@@ -66,7 +68,7 @@ def calc_mode(list_in):
 
 #Problem 3: password identification
 
-def password_id(user_db:dict):
+def identify_password(user_db:dict):
 
     username_input = input('Podaj nazwę użytkownika: ')
     password_input = getpass.getpass('Podaj hasło: ')
@@ -82,3 +84,53 @@ def password_id(user_db:dict):
                     break
 
     return is_verified
+
+#Problem 5: Age calculation
+
+def calculate_age(in_date_of_birth):
+    date_of_birth = date.fromisoformat(in_date_of_birth)
+    current_day = date.today()
+
+    if (current_day-date_of_birth).days < 0:
+        print('Nieprawidłowa data urodzenia, podaj datę wcześniejszą niż dziś.')
+    else:
+        age = current_day.year - date_of_birth.year
+        if current_day.timetuple().tm_yday < date_of_birth.timetuple().tm_yday:
+            age = age - 1
+        print(f'Twój wiek to: {age}')
+
+#Problem 6: Group anagrams
+
+def group_anagrams(list_of_words):
+    anagram_dict = defaultdict(list)
+    for word in list_of_words:
+        sorted_word = ''.join(sorted(word))
+        print(sorted_word)
+        anagram_dict[sorted_word].append(word)
+    return anagram_dict
+
+#Problem 7: Find missing number
+
+def find_missing_numbers(in_array):
+    missing_numbers = []
+    for i in range(1,in_array[-1]):
+        if i not in in_array:
+            missing_numbers.append(i)
+    
+    return missing_numbers
+
+#Problem 8: Group Elements of Same Indices
+
+def group_same_indices(in_lists:list):
+    max_i = max([len(x) for x in in_lists])
+    out_lists = []
+    for i in range(max_i):
+        out_lists.append([])
+
+    for sublist in in_lists:
+         for i, element in enumerate(sublist):
+             out_lists[i].append(element)
+
+    return out_lists
+
+

@@ -38,34 +38,38 @@ def test_calc_mean_type(in_list, expected):
     except TypeError:
         assert True
 
-def test_password_id_pass(user_db, monkeypatch):
+def test_identify_password_pass(user_db, monkeypatch):
     
     monkeypatch.setattr('builtins.input', lambda _: 'jwis')
     monkeypatch.setattr('getpass.getpass', lambda _: 'hasło')
-    result = beginner_problems.password_id(user_db)
+    result = beginner_problems.identify_password(user_db)
     
     assert result == 'Zalogowano.'
 
-def test_password_id_pass_in3tries(user_db, monkeypatch):
+def test_identify_password_pass_in3tries(user_db, monkeypatch):
     passwords = iter(['hasło','123da2342','12345678'])
     monkeypatch.setattr('builtins.input', lambda _: 'ktos_inny')
     monkeypatch.setattr('getpass.getpass', lambda _: next(passwords))
-    result = beginner_problems.password_id(user_db)
+    result = beginner_problems.identify_password(user_db)
     
     assert result == 'Zalogowano.'
 
-def test_password_id_fail_user(user_db, monkeypatch):
+def test_identify_password_fail_user(user_db, monkeypatch):
     
     monkeypatch.setattr('builtins.input', lambda _: 'jwissss')
     monkeypatch.setattr('getpass.getpass', lambda _: 'hasło')
-    result = beginner_problems.password_id(user_db)
+    result = beginner_problems.identify_password(user_db)
     
     assert result == 'Nieprawidłowa nazwa użytkownika lub hasło.'
 
-def test_password_id_fail_password(user_db, monkeypatch):
+def test_identify_password_fail_password(user_db, monkeypatch):
     
     monkeypatch.setattr('builtins.input', lambda _: 'wisj')
     monkeypatch.setattr('getpass.getpass', lambda _: 'hasło')
-    result = beginner_problems.password_id(user_db)
+    result = beginner_problems.identify_password(user_db)
     
     assert result == 'Nieprawidłowa nazwa użytkownika lub hasło.'
+
+def test_group_same_indices(in_lists, out_lists):
+    result = beginner_problems.group_same_indices(in_lists)
+    assert result == out_lists
