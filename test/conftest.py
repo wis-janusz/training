@@ -10,3 +10,12 @@ def odd_list():
 def user_db():
     return {'jwis':'hasło','wisj':'password','ktos_inny':'12345678'}
 
+#Lists for problem 8
+@pytest.fixture
+def in_lists():
+    return [[10, 20, 30], [40, 50, 60, 100], [70, 80, 90, 110]]
+
+@pytest.fixture
+def out_lists():
+    return [[10,40,70],[20,50,80],[30,60,90],[100,110]]
+
